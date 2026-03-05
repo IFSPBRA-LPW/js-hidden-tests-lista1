@@ -562,21 +562,24 @@ expect(tamanhoSemEspacos(s)).toBe(t)
 
 
 describe("30 - contarPalavras",()=>{
-
-test("aleatorio",()=>{
-for(let i=0;i<40;i++){
-const palavras=randomInt(1,6)
-
-let frase=""
-for(let j=0;j<palavras;j++){
-frase+=randomString(randomInt(2,6))
-if(j<palavras-1) frase+=" "
-}
-
-expect(contarPalavras(frase)).toBe(palavras)
-
-}
-
+  test("aleatorio",()=>{
+    for(let i=0;i<40;i++){
+      const palavras=randomInt(1,6)
+      let frase=""
+      for(let j=0;j<palavras;j++){
+        frase+=randomString(randomInt(2,6))
+        if(j<palavras-1) frase+=" "
+      }
+    expect(contarPalavras(frase)).toBe(palavras)
+    }
+  })
 })
 
+const { calcularNota } = require("../grade")
+
+afterAll(() => {
+    const nota = calcularNota()
+    console.log("\n==============================")
+    console.log("Nota final:", nota)
+    console.log("==============================\n")
 })
