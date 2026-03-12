@@ -1,4 +1,4 @@
-const exercicios = require("../../exercicios")
+const exercicios = require("../../exercicios.js")
 
 const {
 dobro,
