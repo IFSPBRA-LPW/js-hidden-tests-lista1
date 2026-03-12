@@ -575,11 +575,4 @@ describe("30 - contarPalavras",()=>{
   })
 })
 
-const { calcularNota } = require("../grade")
 
-afterAll(() => {
-    const nota = calcularNota()
-    console.log("\n==============================")
-    console.log("Nota final:", nota)
-    console.log("==============================\n")
-})
