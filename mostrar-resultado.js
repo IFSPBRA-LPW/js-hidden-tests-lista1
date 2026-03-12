@@ -9,7 +9,7 @@ try {
 }
 
 console.log("=================================");
-console.log("RESULTADO DOS EXERCÍCIOS");
+console.log("RESULTADO DOS EXERCÍCIOS (detalhado)");
 console.log("=================================\n");
 
 if (!dados.testResults || dados.numTotalTests === 0) {
@@ -25,8 +25,22 @@ dados.testResults.forEach((suite) => {
   suite.assertionResults.forEach((teste) => {
     const status = teste.status === "passed" ? "✔" : "✘";
     console.log(`Exercício ${contador} ${status}`);
-    if (status === "✔") totalPass++;
-    else totalFail++;
+
+    if (status === "✘") {
+      totalFail++;
+      if (teste.failureMessages && teste.failureMessages.length > 0) {
+        console.log("   ⚠ Motivo da falha:");
+        teste.failureMessages.forEach((msg) => {
+          // Limitar a exibição das linhas para não poluir o console
+          const linhas = msg.split("\n").slice(0, 5).join("\n");
+          console.log("   " + linhas.replace(/\n/g, "\n   "));
+          if (msg.split("\n").length > 5) console.log("   ...");
+        });
+      }
+    } else {
+      totalPass++;
+    }
+
     contador++;
   });
 });
@@ -39,4 +53,6 @@ console.log("=================================\n");
 
 if (totalFail > 0) {
   console.log("⚠ Alguns exercícios falharam. Verifique os detalhes acima.");
+} else {
+  console.log("🎉 Todos os exercícios passaram!");
 }
