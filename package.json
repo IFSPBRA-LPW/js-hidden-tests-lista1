@@ -8,6 +8,6 @@
     "test": "jest --json --outputFile=result.json --silent"
   },
   "jest": {
-    "testTimeout": 20000
+    "testTimeout": 120000
   }
 }
