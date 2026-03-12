@@ -1,23 +1,35 @@
 const fs = require("fs")
 
-const dados = JSON.parse(fs.readFileSync("result.json"))
-
 console.log("=================================")
 console.log("RESULTADO DOS EXERCÍCIOS")
 console.log("=================================\n")
 
+const dados = JSON.parse(fs.readFileSync("result.json"))
+
 let contador = 1
+let houveTestes = false
 
 dados.testResults.forEach(suite => {
 
-    suite.assertionResults.forEach(teste => {
+  if (!suite.assertionResults) {
+    console.log("Erro ao executar testes (possível erro de sintaxe no código).")
+    return
+  }
 
-        const status = teste.status === "passed" ? "✔" : "✘"
+  suite.assertionResults.forEach(teste => {
 
-        console.log(`Exercício ${contador} ${status}`)
+    houveTestes = true
 
-        contador++
+    const status = teste.status === "passed" ? "✔" : "✘"
 
-    })
+    console.log(`Exercício ${contador} ${status}`)
+
+    contador++
+
+  })
 
 })
+
+if (!houveTestes) {
+  console.log("Nenhum teste pôde ser executado.")
+}
