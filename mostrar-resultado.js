@@ -32,4 +32,5 @@ dados.testResults.forEach(suite => {
 
 if (!houveTestes) {
   console.log("Nenhum teste pôde ser executado.")
+  console.log("Erro ao executar testes (possível erro de sintaxe no código).")
 }
