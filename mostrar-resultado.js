@@ -19,3 +19,4 @@ dados.testResults.forEach(suite => {
         contador++
 
     })
+}
