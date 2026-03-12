@@ -6,18 +6,28 @@ console.log("=================================")
 console.log("RESULTADO DOS EXERCÍCIOS")
 console.log("=================================\n")
 
+if (dados.numTotalTests === 0) {
+
+  console.log("Erro de sintaxe no arquivo exercicios.js")
+  console.log("Os testes não puderam ser executados.\n")
+
+  process.exit(0)
+}
+
 let contador = 1
 
 dados.testResults.forEach(suite => {
 
-    suite.assertionResults.forEach(teste => {
+  if (!suite.assertionResults) return
 
-        const status = teste.status === "passed" ? "✔" : "✘"
+  suite.assertionResults.forEach(teste => {
 
-        console.log(`Exercício ${contador} ${status}`)
+    const status = teste.status === "passed" ? "✔" : "✘"
 
-        contador++
+    console.log(`Exercício ${contador} ${status}`)
 
-    })
+    contador++
+
+  })
 
 })
